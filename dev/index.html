@@ -308,33 +308,6 @@
     For package developers
   </a>
   
-    <nav class="md-nav" aria-label="For package developers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-package" class="md-nav__link">
-    Why this package?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
-    Structure
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -432,33 +405,6 @@
     For package developers
   </a>
   
-    <nav class="md-nav" aria-label="For package developers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#why-this-package" class="md-nav__link">
-    Why this package?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#structure" class="md-nav__link">
-    Structure
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    Syntax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -495,77 +441,47 @@
 <p><a id='DimensionalData'></a></p>
 <p><a id='DimensionalData-1'></a></p>
 <h2 id="dimensionaldata">DimensionalData<a class="headerlink" href="#dimensionaldata" title="Permanent link">¤</a></h2>
-<p>DimensionalData.jl provides tools and abstractions for working with datasets that have named dimensions, and optionally a lookup index. It provides no-cost abstractions for named indexing, and fast index lookups.</p>
+<p>DimensionalData.jl provides tools and abstractions for working with datasets that have named dimensions, and optionally a lookup index.</p>
 <p>DimensionalData is a pluggable, generalised version of <a href="https://github.com/JuliaArrays/AxisArrays.jl">AxisArrays.jl</a> with a cleaner syntax, and additional functionality found in NamedDims.jl. It has similar goals to pythons <a href="http://xarray.pydata.org/en/stable/">xarray</a>, and is primarily written for use with spatial data in <a href="https://github.com/rafaqz/Rasters.jl">Rasters.jl</a>.</p>
 <p><a id='Goals'></a></p>
 <p><a id='Goals-1'></a></p>
 <h2 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">¤</a></h2>
 <div class="admonition info">
 <ul>
-<li>Maximum extensibility: always use method dispatch. Regular types over special syntax. Recursion over @generated.</li>
-<li>Flexibility: dims and selectors are parametric types with multiple uses</li>
-<li>Abstraction: never dispatch on concrete types, maximum re-usability of methods</li>
-<li>Clean, readable syntax. Minimise required parentheses, minimise of exported methods, and instead extend Base methods whenever possible.</li>
-<li>Minimal interface: implementing a dimension-aware type should be easy.</li>
-<li>Functional style: structs are always rebuilt, and other than the array data, fields are not mutated in place.</li>
-<li>Laziness. Label data correctly, and manipulate them when needed -  instead of standardising eagerly.</li>
+<li>Clean, readable syntax. Minimise required parentheses, minimise of exported</li>
+<li>Zero-cost dimensional indexing <code>a[Y(4), X(5)]</code> of a single value. methods, and instead extend Base methods whenever possible.</li>
+<li>Plotting is easy: data should plot sensibly and correctly with useful labels, by default.</li>
 <li>Least surprise: everything works the same as in Base, but with named dims. If a method accepts numeric indices or <code>dims=X</code> in base, you should be able to use DimensionalData.jl dims.</li>
+<li>Minimal interface: implementing a dimension-aware type should be easy.</li>
+<li>Maximum extensibility: always use method dispatch. Regular types over special syntax. Recursion over @generated. Always dispatch on abstract types.</li>
 <li>Type stability: dimensional methods should be type stable <em>more often</em> than Base methods</li>
-<li>Zero cost dimensional indexing <code>a[Y(4), X(5)]</code> of a single value.</li>
-<li>Low cost indexing for range getindex and views: these cant be zero cost as dim ranges have to be updated.</li>
-<li>Plotting is easy: data should plot sensibly and correctly with useful labels - after all transformations using dims or indices</li>
-<li>Prioritise spatial data: other use cases are a free bonus of the modular approach.</li>
+<li>Functional style: structs are always rebuilt, and other than the array data, fields are not mutated in place.</li>
 </ul>
 </div>
 <p><a id='For-package-developers'></a></p>
 <p><a id='For-package-developers-1'></a></p>
 <h2 id="for-package-developers">For package developers<a class="headerlink" href="#for-package-developers" title="Permanent link">¤</a></h2>
-<p><a id='Why-this-package?'></a></p>
-<p><a id='Why-this-package?-1'></a></p>
-<h3 id="why-this-package">Why this package?<a class="headerlink" href="#why-this-package" title="Permanent link">¤</a></h3>
-<p>Why not <a href="https://github.com/JuliaArrays/AxisArrays.jl">AxisArrays.jl</a> or <a href="https://github.com/invenia/NamedDims.jl/">NamedDims.jl</a>?</p>
-<p><a id='Structure'></a></p>
-<p><a id='Structure-1'></a></p>
-<h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">¤</a></h3>
-<p>Both AxisArrays and NamedDims use concrete types for dispatch on arrays, and for dimension type <code>Axis</code> in AxisArrays. This makes them hard to extend.</p>
-<details class="question">
-<summary>more</summary>
-<p>Its a little easier with DimensionalData.jl. You can inherit from
-<code>AbstractDimArray</code>, or just implement <code>dims</code> and <code>rebuild</code> methods. Dims
-and selectors in DimensionalData.jl are also extensible. Recursive primitive
-methods allow inserting whatever methods you want to add extra types.
-<code>@generated</code> is only used to match and permute arbitrary tuples of types, and
-contain no type-specific details. The <code>@generated</code> functions in AxisArrays
-internalise axis/index conversion behaviour preventing extension in external
-packages and scripts.</p>
-</details>
-<p><a id='Syntax'></a></p>
-<p><a id='Syntax-1'></a></p>
-<h3 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">¤</a></h3>
-<p>AxisArrays.jl is verbose by default: <code>a[Axis{:y}(1)]</code> vs <code>a[Y(1)]</code> used here. NamedDims.jl has concise syntax, but the dimensions are no longer types, NamedDims.jl syntax can now be replicated using <code>Dim{:X}</code>: </p>
-<div class="highlight"><pre><span></span><code><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DimArray</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">))</span>
-<span class="n">A</span><span class="p">[</span><span class="ss">:b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="ss">:a</span><span class="o">=</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25.0</span>
-</code></pre></div>
 <p><a id='Data-types-and-the-interface'></a></p>
 <p><a id='Data-types-and-the-interface-1'></a></p>
 <h2 id="data-types-and-the-interface">Data types and the interface<a class="headerlink" href="#data-types-and-the-interface" title="Permanent link">¤</a></h2>
-<p>DimensionalData.jl provides the concrete <code>DimArray</code> type. But it's core purpose is to be easily used with other array types.</p>
+<p>DimensionalData.jl provides the concrete <code>DimArray</code> type. But its behaviours are intended to be easily applied to other array types.</p>
 <details class="question">
 <summary>more</summary>
-<p>Some of the functionality in DimensionalData.jl will work without inheriting
-from <code>AbstractDimArray</code>. The main requirement define a <code>dims</code> method
+<p>The main requirement for extending DimensionalData.jl is to define a <code>dims</code> method
 that returns a <code>Tuple</code> of <code>Dimension</code> that matches the dimension order
-and axis values of your data. Define <code>rebuild</code>, and base methods for <code>similar</code>
+and axis values of your data. Define <code>rebuild</code> and base methods for <code>similar</code>
 and <code>parent</code> if you want the metadata to persist through transformations (see
 the <code>DimArray</code> and <code>AbstractDimArray</code> types). A <code>refdims</code> method
 returns the lost dimensions of a previous transformation, passed in to the
-<code>rebuild</code> method. <code>refdims</code> can be discarded, the main loss being plot labels.</p>
-<p>Inheriting from <code>AbstractDimArray</code> will give nearly all the functionality
+<code>rebuild</code> method. <code>refdims</code> can be discarded, the main loss being plot labels
+and ability to reconstruct dimensions in <code>cat</code>.</p>
+<p>Inheriting from <code>AbstractDimArray</code> in this way will give nearly all the functionality
 of using <code>DimArray</code>.</p>
 </details>
 <p><a id='LookupArrays-and-Dimensions'></a></p>
 <p><a id='LookupArrays-and-Dimensions-1'></a></p>
 <h2 id="lookuparrays-and-dimensions">LookupArrays and Dimensions<a class="headerlink" href="#lookuparrays-and-dimensions" title="Permanent link">¤</a></h2>
+<p>Sub modules <code>LookupArrays</code> and <code>Dimensions</code> define the behviour of dimensions and their lookup index.</p>
 <p><a href="reference/#DimensionalData.Dimensions.LookupArrays"><code>LookupArrays</code></a> and <a href="reference/#DimensionalData.Dimensions"><code>Dimensions</code></a></p>
 
 
