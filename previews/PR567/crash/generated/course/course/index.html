@@ -591,32 +591,32 @@
 <span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>5×5 DimArray{Float64,2} with dimensions: X, Y
- 0.854569  0.77613   0.495578  0.336196  0.135012
- 0.851401  0.928926  0.703483  0.448749  0.655855
- 0.589331  0.851612  0.86663   0.261018  0.39169
- 0.603363  0.941628  0.156442  0.514565  0.717393
- 0.568715  0.299938  0.237053  0.663199  0.444408
+ 0.0109874  0.11194    0.205524   0.810389   0.864798
+ 0.820848   0.0773866  0.143096   0.0894737  0.80654
+ 0.73263    0.0328774  0.0329729  0.881667   0.255714
+ 0.558959   0.980154   0.907383   0.0468654  0.485482
+ 0.224652   0.336845   0.217977   0.298317   0.886324
 </code></pre></div>
 <p>get value</p>
 <div class="highlight"><pre><span></span><code><span class="n">A</span><span class="p">[</span><span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.8514013938884764
+<div class="highlight"><pre><span></span><code>0.8208481519180908
 </code></pre></div>
 <p>As shown above, <code>Dimension</code>s can be used to construct arrays in <code>rand</code>, <code>ones</code>, <code>zeros</code> and <code>fill</code> with either a range for a lookup index or a number for the dimension length.</p>
 <p>Or we can use the <code>Dim{X}</code> dims by using <code>Symbol</code>s, and indexing with keywords:</p>
 <div class="highlight"><pre><span></span><code><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DimArray</span><span class="p">(</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="ss">:a</span><span class="p">,</span><span class="w"> </span><span class="ss">:b</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>5×5 DimArray{Float64,2} with dimensions: Dim{:a}, Dim{:b}
- 0.274566   0.798377   0.619674  0.953132  0.765402
- 0.466571   0.944573   0.789634  0.793336  0.232278
- 0.356199   0.114744   0.326659  0.388539  0.809347
- 0.0562513  0.0598153  0.333169  0.245287  0.471839
- 0.653739   0.890995   0.586837  0.188978  0.420156
+ 0.00862875  0.419477  0.901692  0.134388   0.212018
+ 0.405569    0.904637  0.388262  0.0775811  0.862166
+ 0.292222    0.632081  0.875421  0.923374   0.199168
+ 0.244805    0.206243  0.789072  0.835699   0.638027
+ 0.493109    0.322789  0.563735  0.519624   0.985708
 </code></pre></div>
 <p>get value</p>
 <div class="highlight"><pre><span></span><code><span class="n">A</span><span class="p">[</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.809347338017023
+<div class="highlight"><pre><span></span><code>0.19916762424791068
 </code></pre></div>
 <p>Often, we want to provide a lookup index for the dimension:</p>
 <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">Dates</span>
@@ -628,16 +628,16 @@
   X Sampled{Int64} 10:10:100 ForwardOrdered Regular Points,
   Ti Sampled{DateTime} DateTime(&quot;2001-01-01T00:00:00&quot;):Month(1):DateTime(&quot;2001-12-01T00:00:00&quot;) ForwardOrdered Regular Points
        2001-01-01T00:00:00  …   2001-12-01T00:00:00
-  10  0.375817                             0.838841
-  20  0.148232                             0.591279
-  30  0.0121039                            0.551571
-  40  0.869386                             0.421086
-  50  0.757647                          …  0.192444
-  60  0.532049                             0.611806
-  70  0.219442                             0.920846
-  80  0.432078                             0.412234
-  90  0.280473                             0.675382
- 100  0.620084                          …  0.655326
+  10  0.163929                             0.509359
+  20  0.878721                             0.838473
+  30  0.574558                             0.346534
+  40  0.565401                             0.983132
+  50  0.444916                          …  0.332815
+  60  0.0611202                            0.421593
+  70  0.0570711                            0.389765
+  80  0.237117                             0.488355
+  90  0.750293                             0.90615
+ 100  0.16348                           …  0.982205
 </code></pre></div>
 <p>Here both <code>X</code> and <code>Ti</code> are dimensions from <code>DimensionalData</code>. The currently exported dimensions are <code>X, Y, Z, Ti</code> (<code>Ti</code> is shortening of <code>Time</code>).</p>
 <p>The length of each dimension index has to match the size of the corresponding array axis.</p>
@@ -648,18 +648,18 @@
   Dim{:time} Sampled{DateTime} DateTime(&quot;2001-01-01T00:00:00&quot;):Month(1):DateTime(&quot;2001-12-01T00:00:00&quot;) ForwardOrdered Regular Points,
   Dim{:distance} Sampled{Int64} 10:10:100 ForwardOrdered Regular Points
                                    …  80          90          100
-  2001-01-01T00:00:00      0.91409     0.633343     0.588364
-  2001-02-01T00:00:00      0.225652    0.050856     0.133361
-  2001-03-01T00:00:00      0.379013    0.322328     0.94561
-  2001-04-01T00:00:00      0.797219    0.929076     0.171806
-  2001-05-01T00:00:00  …   0.872259    0.0733996    0.0818386
-  2001-06-01T00:00:00      0.0615516   0.527753     0.867005
-  2001-07-01T00:00:00      0.562432    0.333651     0.783175
-  2001-08-01T00:00:00      0.60626     0.0436795    0.601362
-  2001-09-01T00:00:00      0.40189     0.0815023    0.3721
-  2001-10-01T00:00:00  …   0.220685    0.0918358    0.474216
-  2001-11-01T00:00:00      0.138297    0.120714     0.539099
-  2001-12-01T00:00:00      0.250739    0.909612     0.637865
+  2001-01-01T00:00:00      0.94272     0.731561     0.735406
+  2001-02-01T00:00:00      0.80927     0.566651     0.0723844
+  2001-03-01T00:00:00      0.387498    0.602627     0.542466
+  2001-04-01T00:00:00      0.198577    0.0124027    0.046974
+  2001-05-01T00:00:00  …   0.531045    0.677656     0.435974
+  2001-06-01T00:00:00      0.427917    0.416575     0.64664
+  2001-07-01T00:00:00      0.495951    0.81238      0.0846779
+  2001-08-01T00:00:00      0.805465    0.0440981    0.668445
+  2001-09-01T00:00:00      0.158847    0.682696     0.479904
+  2001-10-01T00:00:00  …   0.490632    0.545989     0.91871
+  2001-11-01T00:00:00      0.0161826   0.666168     0.619095
+  2001-12-01T00:00:00      0.687529    0.754109     0.85738
 </code></pre></div>
 <p>Symbols can be more convenient to use than defining custom dims with <code>@dim</code>, but have some downsides. They don't inherit from a specific <code>Dimension</code> type, so plots will not know what axis to put them on. They also cannot use the basic constructor methods like <code>rand</code> or <code>zeros</code>, as we cannot dispatch on <code>Symbol</code> for Base methods without "type-piracy".</p>
 <p><a id='Indexing-the-array-by-name-and-index'></a></p>
@@ -673,10 +673,10 @@
   X Sampled{Int64} 10:30:100 ForwardOrdered Regular Points,
   Ti Sampled{DateTime} DateTime(&quot;2001-01-01T00:00:00&quot;):Month(2):DateTime(&quot;2001-11-01T00:00:00&quot;) ForwardOrdered Regular Points
        2001-01-01T00:00:00  …   2001-11-01T00:00:00
-  10  0.375817                             0.694244
-  40  0.869386                             0.0542952
-  70  0.219442                             0.247084
- 100  0.620084                             0.262849
+  10  0.163929                             0.932131
+  40  0.565401                             0.0858711
+  70  0.0570711                            0.499217
+ 100  0.16348                              0.316738
 </code></pre></div>
 <p>When specifying only one dimension, all elements of the other dimensions are assumed to be included:</p>
 <div class="highlight"><pre><span></span><code><span class="n">A</span><span class="p">[</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="o">:</span><span class="mi">10</span><span class="p">)]</span>
@@ -685,10 +685,10 @@
   X Sampled{Int64} 10:30:100 ForwardOrdered Regular Points,
   Ti Sampled{DateTime} DateTime(&quot;2001-01-01T00:00:00&quot;):Month(1):DateTime(&quot;2001-12-01T00:00:00&quot;) ForwardOrdered Regular Points
        2001-01-01T00:00:00  …   2001-12-01T00:00:00
-  10  0.375817                             0.838841
-  40  0.869386                             0.421086
-  70  0.219442                             0.920846
- 100  0.620084                             0.655326
+  10  0.163929                             0.509359
+  40  0.565401                             0.983132
+  70  0.0570711                            0.389765
+ 100  0.16348                              0.982205
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Indexing</p>
@@ -748,13 +748,13 @@ and reference dimensions: Y
 
 <span class="n">println</span><span class="p">(</span><span class="nd">@btime</span><span class="w"> </span><span class="o">$</span><span class="n">A2</span><span class="p">[</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">Y</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>  43.668 ns (0 allocations: 0 bytes)
+<div class="highlight"><pre><span></span><code>  43.981 ns (0 allocations: 0 bytes)
 1.0
 </code></pre></div>
 <p>and</p>
 <div class="highlight"><pre><span></span><code><span class="n">println</span><span class="p">(</span><span class="nd">@btime</span><span class="w"> </span><span class="n">parent</span><span class="p">(</span><span class="o">$</span><span class="n">A2</span><span class="p">)[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">])</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>  3.095 ns (0 allocations: 0 bytes)
+<div class="highlight"><pre><span></span><code>  3.406 ns (0 allocations: 0 bytes)
 1.0
 </code></pre></div>
 <p><a id='Specifying-dims-keyword-arguments-with-Dimension'></a></p>
@@ -766,9 +766,9 @@ and reference dimensions: Y
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>3×4×1 DimArray{Float64,3} with dimensions: X, Y, Ti
 [:, :, 1]
- 2.84333  3.02411  3.00807  1.13367
- 1.78841  2.43882  1.82706  2.27202
- 2.50534  2.39941  1.99845  2.32268
+ 2.59872  1.43847  2.73445  2.82238
+ 2.68461  1.65897  2.55233  2.58916
+ 2.6304   2.78323  3.08794  2.48413
 </code></pre></div>
 <p>This also works in methods from <code>Statistics</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">Statistics</span>
@@ -776,9 +776,9 @@ and reference dimensions: Y
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>3×4×1 DimArray{Float64,3} with dimensions: X, Y, Ti
 [:, :, 1]
- 0.568666  0.604821  0.601613  0.226734
- 0.357682  0.487763  0.365412  0.454404
- 0.501068  0.479883  0.399689  0.464536
+ 0.519744  0.287693  0.54689   0.564476
+ 0.536921  0.331794  0.510467  0.517831
+ 0.526079  0.556646  0.617588  0.496825
 </code></pre></div>
 <p><a id='Methods-where-dims,-dim-types,-or-Symbols-can-be-used-to-indicate-the-array-dimension:'></a></p>
 <p><a id='Methods-where-dims,-dim-types,-or-Symbols-can-be-used-to-indicate-the-array-dimension:-1'></a></p>
@@ -845,8 +845,8 @@ and reference dimensions: Y
   X Sampled{Int64} 20:10:30 ForwardOrdered Regular Points,
   Ti Sampled{DateTime} DateTime(&quot;2001-05-01T00:00:00&quot;):Month(1):DateTime(&quot;2001-07-01T00:00:00&quot;) ForwardOrdered Regular Points
       2001-05-01T00:00:00  …   2001-07-01T00:00:00
- 20  0.00630371                           0.160459
- 30  0.190613                             0.50515
+ 20  0.977354                             0.82668
+ 30  0.422447                             0.0861482
 </code></pre></div>
 <p>To select intervals in DimArrays (e.g. <code>A2</code>) you need to specify <code>dimname=a .. b</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">A2</span><span class="p">[</span><span class="n">distance</span><span class="o">=</span><span class="mi">12</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="o">=</span><span class="n">Date</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="n">Date</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)]</span>
@@ -863,7 +863,7 @@ and reference dimensions: Y
 <span class="n">A4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="n">Ti</span><span class="p">(</span><span class="n">timespan</span><span class="p">),</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="mi">10</span><span class="o">:</span><span class="mi">10</span><span class="o">:</span><span class="mi">100</span><span class="p">))</span>
 <span class="n">A4</span><span class="p">[</span><span class="n">X</span><span class="p">(</span><span class="n">Near</span><span class="p">(</span><span class="mi">35</span><span class="p">)),</span><span class="w"> </span><span class="n">Ti</span><span class="p">(</span><span class="n">At</span><span class="p">(</span><span class="n">DateTime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="mi">5</span><span class="p">)))]</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>0.3356633121537933
+<div class="highlight"><pre><span></span><code>0.3657654111307467
 </code></pre></div>
 <p>Without dim wrappers selectors must be in the right order, and specify all axes:</p>
 <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">Unitful</span>
@@ -874,20 +874,20 @@ and reference dimensions: Y
   Y Sampled{Quantity{Int64, 𝐋, Unitful.FreeUnits{(m,), 𝐋, nothing}}} (11:10:41) m ForwardOrdered Regular Points
 and reference dimensions: 
   Ti Sampled{Quantity{Int64, 𝐓, Unitful.FreeUnits{(s,), 𝐓, nothing}}} (21:5:21) s ForwardOrdered Regular Points
- 11 m  0.227227
- 21 m  0.590446
- 31 m  0.171401
- 41 m  0.647367
+ 11 m  0.142006
+ 21 m  0.915311
+ 31 m  0.484184
+ 41 m  0.338529
 </code></pre></div>
 <p>We can also use Linear indices as in standard <code>Array</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">A5</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>5-element Vector{Float64}:
- 0.37922936424672393
- 0.9403388667468535
- 0.9211935238757324
- 0.8059984197577222
- 0.5636801242944974
+ 0.11539937026195124
+ 0.332608479390078
+ 0.2724037079326618
+ 0.9786467435077415
+ 0.9466836505716679
 </code></pre></div>
 <p>But unless the <code>DimArray</code> is one dimensional, this will return a regular <code>Array</code>. It is not possible to keep the <code>LookupArray</code> or even <code>Dimension</code>s after linear indexing is used.</p>
 <p><a id='LookupArrays-and-traits'></a></p>
