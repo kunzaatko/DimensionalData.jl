@@ -627,9 +627,9 @@
   X Sampled{Float64} 1.0:0.5:2.0 ForwardOrdered Regular Points,
   Ti Sampled{DateTime} DateTime(&quot;2000-01-01T00:00:00&quot;):Hour(6):DateTime(&quot;2001-04-01T00:00:00&quot;) ForwardOrdered Regular Points
        2000-01-01T00:00:00  …   2001-04-01T00:00:00
- 1.0  0.0358357                            0.71162
- 1.5  0.872415                             0.824192
- 2.0  0.651242                             0.821233
+ 1.0  0.403423                             0.18724
+ 1.5  0.0127716                            0.745726
+ 2.0  0.954996                             0.822865
 </code></pre></div>
 <p>The following are <code>functions</code> that can be applied on a DateTime array.</p>
 <p><a id='hour'></a></p>
@@ -763,18 +763,18 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>12-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Int64} Int64[1, 2, …, 11, 12] ForwardOrdered Irregular Points
-  1  0.504809
-  2  0.498307
-  3  0.489798
-  4  0.497815
-  5  0.504526
-  6  0.49635
-  7  0.49115
-  8  0.502429
-  9  0.535741
- 10  0.527243
- 11  0.500125
- 12  0.515084
+  1  0.509213
+  2  0.481117
+  3  0.494809
+  4  0.484719
+  5  0.50378
+  6  0.515585
+  7  0.518678
+  8  0.503584
+  9  0.498785
+ 10  0.466676
+ 11  0.489705
+ 12  0.501972
 </code></pre></div>
 <p><a id='TODO.-How-do-we-aggregate-by-arbitrary-months,-let'-say-I-want-to-aggregate-every-3-months?'></a></p>
 <p><a id='TODO.-How-do-we-aggregate-by-arbitrary-months,-let'-say-I-want-to-aggregate-every-3-months?-1'></a></p>
@@ -783,44 +783,44 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>2-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Int64} Int64[2000, 2001] ForwardOrdered Irregular Points
- 2000  0.506607
- 2001  0.492296
+ 2000  0.494636
+ 2001  0.507
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">mean</span><span class="o">.</span><span class="p">(</span><span class="n">groupby</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">Ti</span><span class="o">=</span><span class="n">yearmonth</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>16-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Tuple{Int64, Int64}} Tuple{Int64, Int64}[(2000, 1), (2000, 2), …, (2001, 3), (2001, 4)] ForwardOrdered Irregular Points
- (2000, 1)   0.504906
- (2000, 2)   0.516259
- (2000, 3)   0.490718
- (2000, 4)   0.495416
- (2000, 5)   0.504526
- (2000, 6)   0.49635
- (2000, 7)   0.49115
+ (2000, 1)   0.498934
+ (2000, 2)   0.464702
+ (2000, 3)   0.487721
+ (2000, 4)   0.483881
+ (2000, 5)   0.50378
+ (2000, 6)   0.515585
+ (2000, 7)   0.518678
  ⋮           
- (2000, 10)  0.527243
- (2000, 11)  0.500125
- (2000, 12)  0.515084
- (2001, 1)   0.504712
- (2001, 2)   0.479713
- (2001, 3)   0.488878
- (2001, 4)   0.785682
+ (2000, 10)  0.466676
+ (2000, 11)  0.489705
+ (2000, 12)  0.501972
+ (2001, 1)   0.519493
+ (2001, 2)   0.498119
+ (2001, 3)   0.501897
+ (2001, 4)   0.585277
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">mean</span><span class="o">.</span><span class="p">(</span><span class="n">groupby</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">Ti</span><span class="o">=</span><span class="n">hour</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>4-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Int64} Int64[0, 6, 12, 18] ForwardOrdered Irregular Points
-  0  0.50429
-  6  0.494957
- 12  0.506232
- 18  0.509625
+  0  0.505262
+  6  0.493854
+ 12  0.492627
+ 18  0.496565
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">mean</span><span class="o">.</span><span class="p">(</span><span class="n">groupby</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">Ti</span><span class="o">=</span><span class="n">Dates</span><span class="o">.</span><span class="n">hour12</span><span class="p">))</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>2-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Int64} Int64[6, 12] ForwardOrdered Irregular Points
-  6  0.502291
- 12  0.50526
+  6  0.495209
+ 12  0.498952
 </code></pre></div>
 <p><a id='TODO.-How-do-could-we-incorporate-resample?-Let's-say-if-we-have-hour-resolution-I-want-to-resample-every-3,6,12..-hours?'></a></p>
 <p><a id='TODO.-How-do-could-we-incorporate-resample?-Let's-say-if-we-have-hour-resolution-I-want-to-resample-every-3,6,12..-hours?-1'></a></p>
@@ -829,61 +829,61 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>366-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Int64} Int64[1, 2, …, 365, 366] ForwardOrdered Irregular Points
-   1  0.562389
-   2  0.470042
-   3  0.515537
-   4  0.508518
-   5  0.398653
-   6  0.477066
-   7  0.443125
+   1  0.497701
+   2  0.473768
+   3  0.465011
+   4  0.496109
+   5  0.542919
+   6  0.435217
+   7  0.597203
    ⋮  
- 360  0.329819
- 361  0.335723
- 362  0.442271
- 363  0.659249
- 364  0.408438
- 365  0.479437
- 366  0.66905
+ 360  0.494941
+ 361  0.431209
+ 362  0.50236
+ 363  0.521266
+ 364  0.435817
+ 365  0.508244
+ 366  0.468535
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">mean</span><span class="o">.</span><span class="p">(</span><span class="n">groupby</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">Ti</span><span class="o">=</span><span class="n">yearmonthday</span><span class="p">))</span><span class="w"> </span><span class="c"># this does the a daily mean aggregation.</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>457-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Tuple{Int64, Int64, Int64}} Tuple{Int64, Int64, Int64}[(2000, 1, 1), (2000, 1, 2), …, (2001, 3, 31), (2001, 4, 1)] ForwardOrdered Irregular Points
- (2000, 1, 1)   0.528328
- (2000, 1, 2)   0.560047
- (2000, 1, 3)   0.522202
- (2000, 1, 4)   0.49448
- (2000, 1, 5)   0.388401
- (2000, 1, 6)   0.474704
- (2000, 1, 7)   0.371064
+ (2000, 1, 1)   0.531896
+ (2000, 1, 2)   0.458769
+ (2000, 1, 3)   0.523573
+ (2000, 1, 4)   0.475383
+ (2000, 1, 5)   0.583938
+ (2000, 1, 6)   0.385591
+ (2000, 1, 7)   0.569727
  ⋮              
- (2001, 3, 26)  0.433017
- (2001, 3, 27)  0.577735
- (2001, 3, 28)  0.619108
- (2001, 3, 29)  0.607261
- (2001, 3, 30)  0.495976
- (2001, 3, 31)  0.395281
- (2001, 4, 1)   0.785682
+ (2001, 3, 26)  0.596487
+ (2001, 3, 27)  0.452192
+ (2001, 3, 28)  0.31235
+ (2001, 3, 29)  0.489427
+ (2001, 3, 30)  0.480436
+ (2001, 3, 31)  0.539406
+ (2001, 4, 1)   0.585277
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="n">mean</span><span class="o">.</span><span class="p">(</span><span class="n">groupby</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">Ti</span><span class="o">=</span><span class="n">yearmonth</span><span class="p">))</span><span class="w"> </span><span class="c"># this does a monthly mean aggregation</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>16-element DimArray{Float64,1} with dimensions: 
   Ti Sampled{Tuple{Int64, Int64}} Tuple{Int64, Int64}[(2000, 1), (2000, 2), …, (2001, 3), (2001, 4)] ForwardOrdered Irregular Points
- (2000, 1)   0.504906
- (2000, 2)   0.516259
- (2000, 3)   0.490718
- (2000, 4)   0.495416
- (2000, 5)   0.504526
- (2000, 6)   0.49635
- (2000, 7)   0.49115
+ (2000, 1)   0.498934
+ (2000, 2)   0.464702
+ (2000, 3)   0.487721
+ (2000, 4)   0.483881
+ (2000, 5)   0.50378
+ (2000, 6)   0.515585
+ (2000, 7)   0.518678
  ⋮           
- (2000, 10)  0.527243
- (2000, 11)  0.500125
- (2000, 12)  0.515084
- (2001, 1)   0.504712
- (2001, 2)   0.479713
- (2001, 3)   0.488878
- (2001, 4)   0.785682
+ (2000, 10)  0.466676
+ (2000, 11)  0.489705
+ (2000, 12)  0.501972
+ (2001, 1)   0.519493
+ (2001, 2)   0.498119
+ (2001, 3)   0.501897
+ (2001, 4)   0.585277
 </code></pre></div>
 <p><a id='TODO.-Similar-to-the-hourly-resample,-how-do-we-do-it-for-more-than-1-day,-let's-say-8daily?'></a></p>
 <p><a id='TODO.-Similar-to-the-hourly-resample,-how-do-we-do-it-for-more-than-1-day,-let's-say-8daily?-1'></a></p>
