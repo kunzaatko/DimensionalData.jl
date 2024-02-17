@@ -1,0 +1,1 @@
+import{_ as a,c as s,o as i,V as t}from"./chunks/framework.P2w-sEqG.js";const y=JSON.parse('{"title":"CUDA & GPUs","description":"","frontmatter":{},"headers":[],"relativePath":"cuda.md","filePath":"cuda.md","lastUpdated":null}'),e={name:"cuda.md"},n=t("",12),l=[n];function h(p,o,r,d,k,c){return i(),s("div",null,l)}const m=a(e,[["render",h]]);export{y as __pageData,m as default};
