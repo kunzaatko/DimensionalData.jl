@@ -1,1 +1,0 @@
-import{_ as A,c as C,o as E,V as Q}from"./chunks/framework.PTnso_8b.js";const t=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},g=Q("",13),h=[g];function B(e,s,i,o,l,U){return E(),C("div",null,h)}const n=A(I,[["render",B]]);export{t as __pageData,n as default};
