@@ -1,0 +1,1 @@
+import{_ as A,c as C,o as Q,V as E}from"./chunks/framework.uHRfREZ8.js";const i=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},g=E("",13),h=[g];function B(U,o,s,l,t,K){return Q(),C("div",null,h)}const a=A(I,[["render",B]]);export{i as __pageData,a as default};
