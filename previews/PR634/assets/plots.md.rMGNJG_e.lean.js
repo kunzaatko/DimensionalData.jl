@@ -1,0 +1,1 @@
+import{_ as A,c as C,o as E,V as Q}from"./chunks/framework.36PKGpKo.js";const K=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},g=Q("",13),h=[g];function B(s,U,i,e,l,o){return E(),C("div",null,h)}const t=A(I,[["render",B]]);export{K as __pageData,t as default};
