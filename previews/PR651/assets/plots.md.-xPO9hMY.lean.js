@@ -1,1 +1,0 @@
-import{_ as A,c as C,o as Q,V as E}from"./chunks/framework.ZSI-pWf9.js";const l=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},B=E("",13),g=[B];function h(s,t,o,U,i,a){return Q(),C("div",null,g)}const n=A(I,[["render",h]]);export{l as __pageData,n as default};
