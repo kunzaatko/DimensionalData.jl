@@ -1,0 +1,1 @@
+import{_ as A,c as C,o as Q,V as E}from"./chunks/framework.NsxKZdUM.js";const U=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},g=E("",13),B=[g];function h(l,o,s,i,d,e){return Q(),C("div",null,B)}const n=A(I,[["render",h]]);export{U as __pageData,n as default};
