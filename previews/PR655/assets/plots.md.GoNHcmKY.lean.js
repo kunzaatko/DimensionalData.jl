@@ -1,0 +1,1 @@
+import{_ as A,c as C,o as Q,V as E}from"./chunks/framework.BIwjfTRC.js";const a=JSON.parse('{"title":"Plots.jl","description":"","frontmatter":{},"headers":[],"relativePath":"plots.md","filePath":"plots.md","lastUpdated":null}'),I={name:"plots.md"},g=E("",13),B=[g];function h(o,i,s,e,t,U){return Q(),C("div",null,B)}const d=A(I,[["render",h]]);export{a as __pageData,d as default};
